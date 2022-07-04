@@ -1,0 +1,5 @@
+name: DiscordBot
+description: おうち鯖用DiscordBot
+version: 1.0.0
+api: 4.0.0
+main: Ken_Cir\DiscordBot\DiscordBot

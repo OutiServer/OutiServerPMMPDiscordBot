@@ -1,0 +1,17 @@
+{
+  "name": "ken_cir/discordbot",
+  "description": "おうち鯖用DiscordBotプラグイン",
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "require": {
+    "team-reflex/discord-php": "v7.1.2",
+    "ext-pthreads": "*"
+  },
+  "require-dev": {
+    "pocketmine/pocketmine-mp": "4.*"
+  }
+}

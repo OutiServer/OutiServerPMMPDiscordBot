@@ -1,0 +1,17 @@
+# Bot Token
+token: ""
+
+# アクティビティーメッセージ
+activity_message: ""
+
+# コンソールチャンネルのあるギルドID
+console_guild_id: ""
+
+# コンソールチャンネルID
+console_channel_id: ""
+
+# チャットチャンネルのあるギルドID
+chat_guild_id: ""
+
+# チャットチャンネルID
+chat_channel_id: ""
