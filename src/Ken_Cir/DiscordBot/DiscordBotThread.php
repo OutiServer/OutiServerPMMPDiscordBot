@@ -168,7 +168,7 @@ class DiscordBotThread extends Thread
     {
         $this->registerClassLoaders();
 
-        include "{$this->vendorPath}/vendor/autoload.php";
+        include "$this->vendorPath/vendor/autoload.php";
 
         $loop = Factory::create();
 
@@ -235,7 +235,7 @@ class DiscordBotThread extends Thread
             $message = unserialize($this->minecraftConsoleQueue->shift());//
             $message = preg_replace(['/]0;.*%/', '//', "/Server thread\//"], '', TextFormat::clean(substr($message, 0, 2000)));
             if ($message === "") continue;
-            if (strlen($message) <= 2000) {
+            if (strlen($message) < 2000) {
                 try {
                     $consoleChannel->sendMessage("```$message```");
                 }
@@ -249,7 +249,7 @@ class DiscordBotThread extends Thread
             $message = unserialize($this->minecraftChatQueue->shift());//
             $message = preg_replace(['/]0;.*%/', '/[\x07]/', "/Server thread\//"], '', TextFormat::clean(substr($message, 0, 2000)));
             if ($message === "") continue;
-            if (strlen($message) <= 2000) {
+            if (strlen($message) < 2000) {
                 try {
                     $chatChannel->sendMessage($message);
                 }
