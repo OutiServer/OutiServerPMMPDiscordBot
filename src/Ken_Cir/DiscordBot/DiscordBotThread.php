@@ -103,6 +103,13 @@ class DiscordBotThread extends Thread
      */
     private Threaded $minecraftChatQueue;
 
+    /**
+     * 起動済みか
+     *
+     * @var bool
+     */
+    private bool $isReady;
+
     public function __construct(AttachableLogger $logger, string $vendorPath, string $token, string $activityMsg, string $consoleGuildId, string $consoleChannelId, string $chatGuildId, string $chatChannelId)
     {
         $this->logger = $logger;
@@ -117,6 +124,7 @@ class DiscordBotThread extends Thread
         $this->minecraftConsoleQueue = new Threaded();
         $this->discordChatQueue = new Threaded();
         $this->minecraftChatQueue = new Threaded();
+        $this->isReady = true;
     }
 
     public function shutdown(): void
@@ -201,6 +209,7 @@ class DiscordBotThread extends Thread
         });
 
         $discord->on('ready', function (Discord $discord) {
+            $this->isReady = true;
             $this->logger->info("Bot is ready.");
 
             $activity = new Activity($discord);
@@ -226,6 +235,8 @@ class DiscordBotThread extends Thread
 
     private function task(Discord $discord): void
     {
+        if (!$this->isReady) return;
+
         $consoleGuild = $discord->guilds->get('id', $this->consoleGuildId);
         $consoleChannel = $consoleGuild->channels->get('id', $this->consoleChannelId);
         $chatGuild = $discord->guilds->get('id', $this->chatGuildId);
