@@ -124,7 +124,7 @@ class DiscordBotThread extends Thread
         $this->minecraftConsoleQueue = new Threaded();
         $this->discordChatQueue = new Threaded();
         $this->minecraftChatQueue = new Threaded();
-        $this->isReady = true;
+        $this->isReady = false;
     }
 
     public function shutdown(): void
